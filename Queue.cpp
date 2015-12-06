@@ -20,6 +20,7 @@ Queue::Queue(Queue& queue)
     {
         q[i].data=queue.q[i].data;
         q[i].priority=queue.q[i].priority;
+        first=queue.first;
     }
 }
 
@@ -160,10 +161,16 @@ int& Queue::operator[](int index)
     return ((int*)this)[index];
 }
 
-Queue & Queue::operator=(Queue queueforcopy1)
+Queue & Queue::operator=(Queue  queueforcopy1)
 {
     
-    for(int i=0;i<(*this).GetCount();i++)
+    int k1=(*this).GetCount();
+    int k2=queueforcopy1.GetCount();
+    if (k2<k1) {
+        k1=k2;
+    }
+    
+    for(int i=0;i<k1;i++)
     {
         q[i].data=queueforcopy1.q[i].data;
         q[i].priority=queueforcopy1.q[i].priority;
